@@ -43,18 +43,6 @@ module.exports = class BaseModel {
     return item;
   }
 
-  getByName(name) {
-    const item = this.items.find(i => i.name === name);
-    if (!item) throw new NotFoundError(`Cannot get ${this.name} name=${name} : not found`);
-    return item;
-  }
-
-  getByFirstName(name) {
-    const item = this.items.find(i => i.firstName === name);
-    if (!item) throw new NotFoundError(`Cannot get ${this.name} firstName=${name} : not found`);
-    return item;
-  }
-
   create(obj = {}) {
     const item = Object.assign({}, obj, { id: Date.now() });
     const { error } = Joi.validate(item, this.schema);
